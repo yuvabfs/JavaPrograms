@@ -1,0 +1,52 @@
+package org.basics.fourproblems;
+
+import java.util.Scanner;
+
+public class DayOfYear {
+
+	public static int dayOfTheYear(String Date)
+	{
+
+		String[] DateElement=Date.split("-");
+	
+			int date= Integer.parseInt(DateElement[0]);
+			int year= Integer.parseInt(DateElement[2]);
+			String month=DateElement[1].toLowerCase();
+			int monthToDays=0,daysOfTheYear;
+						
+			switch(DateElement[1])
+			{
+			case "jan": monthToDays=0; break;
+			case "feb": monthToDays=31; break;
+			case "mar": monthToDays=59; break;
+			case "apr": monthToDays=90; break;
+			case "may": monthToDays=120; break;
+			case "jun": monthToDays=151; break;
+			case "jul": monthToDays=181; break;
+			case "aug": monthToDays=212; break;
+			case "sep": monthToDays=243; break;
+			case "oct": monthToDays=273; break;
+			case "nov": monthToDays=304; break;
+			case "dec": monthToDays=334; break;
+			default: System.out.println("Please Retry with correct format!");			
+			}
+			
+			if((year%4==0))
+			{
+				daysOfTheYear=date+monthToDays+1;
+				if(month.equals("jan")||month.equals("feb"))
+				daysOfTheYear--;
+
+			}
+			else
+				daysOfTheYear=date+monthToDays;
+			
+		return daysOfTheYear;
+	}
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Date in [30-Dec-2023]Format: ");
+		String input=sc.next();
+		System.out.println(dayOfTheYear(input));
+	}
+}
