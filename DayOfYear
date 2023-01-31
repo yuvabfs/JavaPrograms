@@ -3,50 +3,144 @@ package org.basics.fourproblems;
 import java.util.Scanner;
 
 public class DayOfYear {
+	static int date=0, year=0, TotalDays = 0;
+	static String month;
 
-	public static int dayOfTheYear(String Date)
-	{
-
-		String[] DateElement=Date.split("-");
-	
-			int date= Integer.parseInt(DateElement[0]);
-			int year= Integer.parseInt(DateElement[2]);
-			String month=DateElement[1].toLowerCase();
-			int monthToDays=0,daysOfTheYear;
-						
-			switch(DateElement[1])
-			{
-			case "jan": monthToDays=0; break;
-			case "feb": monthToDays=31; break;
-			case "mar": monthToDays=59; break;
-			case "apr": monthToDays=90; break;
-			case "may": monthToDays=120; break;
-			case "jun": monthToDays=151; break;
-			case "jul": monthToDays=181; break;
-			case "aug": monthToDays=212; break;
-			case "sep": monthToDays=243; break;
-			case "oct": monthToDays=273; break;
-			case "nov": monthToDays=304; break;
-			case "dec": monthToDays=334; break;
-			default: System.out.println("Please Retry with correct format!");			
-			}
-			
-			if((year%4==0))
-			{
-				daysOfTheYear=date+monthToDays+1;
-				if(month.equals("jan")||month.equals("feb"))
-				daysOfTheYear--;
-
-			}
-			else
-				daysOfTheYear=date+monthToDays;
-			
-		return daysOfTheYear;
-	}
 	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Date in [30-Dec-2023]Format: ");
-		String input=sc.next();
-		System.out.println(dayOfTheYear(input));
+		String input = sc.next();
+
+		if (isValid(input))
+		{
+			if (year % 4 == 0 &&(!(month.equals("jan") || month.equals("feb")))) 
+				System.out.println(++TotalDays);
+
+			else
+			System.out.println(TotalDays);
+		}
+		else
+			System.out.println("Incorrect Date!");
+
 	}
+
+	private static boolean isValid(String input) {
+		boolean isValid=true;
+		
+		String[] DateElement = input.split("-");
+		date = Integer.parseInt(DateElement[0]);
+		month = DateElement[1].toLowerCase();
+		year = Integer.parseInt(DateElement[2]);
+		
+		int DaysTillLastMonth=0;
+		
+		if(DateElement.length>3) isValid=false;
+
+
+		switch (month) {
+		case "jan":
+			DaysTillLastMonth = 0;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "feb":
+			DaysTillLastMonth = 31;
+			if((year%4==0)&&((0>date)|| (date>29)))
+				isValid=false;
+			else if ((year%4!=0)&&((0>date)|| (date>28)))
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "mar":
+			DaysTillLastMonth = 59;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "apr":
+			DaysTillLastMonth = 90;
+			if(0>date || date>30)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "may":
+			DaysTillLastMonth = 120;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "jun":
+			DaysTillLastMonth = 151;
+			if(0>date || date>30)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+		case "jul":
+			DaysTillLastMonth = 181;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "aug":
+			DaysTillLastMonth = 212;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "sep":
+			DaysTillLastMonth = 243;
+			if(0>date || date>30)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "oct":
+			DaysTillLastMonth = 273;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "nov":
+			DaysTillLastMonth = 304;
+			if(0>date || date>30)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		case "dec":
+			DaysTillLastMonth = 334;
+			if(0>date || date>31)
+				isValid=false;
+			else 
+				TotalDays=date+DaysTillLastMonth;
+			break;
+			
+		default:
+			isValid=false;
+		}
+		return isValid;
+	}
+
 }
+
+
