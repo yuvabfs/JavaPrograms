@@ -1,0 +1,64 @@
+package org.basics.fourproblems;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class AverageCalculation {
+
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter number of decimals allowed: ");
+	int n=sc.nextInt();
+	System.out.println("Enter the number of subjects: ");
+	int NoOfSubjects=sc.nextInt();
+	
+	
+	List<Float> Subjects=new ArrayList<>();
+	Float mark;
+	
+	while(Subjects.size()<NoOfSubjects) {
+		mark=sc.nextFloat();
+		if(isValid(mark,n))
+			Subjects.add(mark);
+		else
+			continue;	
+		
+	}
+	
+	System.out.println("Round off needed? [yes/no]: ");
+	String isRoundOff=sc.next();
+	System.out.println("Output without roundoff and multiple decimal places = "+averageCal(Subjects));
+	
+	System.out.println();
+
+	}
+
+
+	private static boolean isValid(Float mark, int n) {
+		boolean isValid=true;
+	
+		String[] DecimalSplit=Float.toString(mark).split("\\.");
+
+		if(DecimalSplit.length!=1&&DecimalSplit[1].length()>n)
+		{
+			System.out.println("Please Re-enter the mark correctly");
+			isValid=false;
+		}
+
+		return isValid;
+	}
+
+	private static Float averageCal(List<Float> subjects) {
+		Float TotalMarks=0.0f,Average=0.0f;
+		
+		for(Float f:subjects)
+		{
+			TotalMarks=f+TotalMarks;
+		}
+		Average=TotalMarks/subjects.size();
+
+		return Average;
+	}
+
+}
