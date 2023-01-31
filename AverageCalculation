@@ -15,7 +15,8 @@ public class AverageCalculation {
 	
 	
 	List<Float> Subjects=new ArrayList<>();
-	Float mark;
+	Float mark,Average, correctedDecimalPlace;
+	int roundedOff=0;
 	
 	while(Subjects.size()<NoOfSubjects) {
 		mark=sc.nextFloat();
@@ -28,9 +29,20 @@ public class AverageCalculation {
 	
 	System.out.println("Round off needed? [yes/no]: ");
 	String isRoundOff=sc.next();
-	System.out.println("Output without roundoff and multiple decimal places = "+averageCal(Subjects));
+	Average=averageCal(Subjects);
+	System.out.println("Output without roundoff and multiple decimal places = "+Average);
 	
-	System.out.println();
+	if(isRoundOff.equalsIgnoreCase("yes"))
+	{
+	roundedOff = RoundedOffValue(Average);
+	System.out.println("Rounded off Average is = "+roundedOff);
+	}
+	
+	else if(isRoundOff.equalsIgnoreCase("no"))
+	{
+	correctedDecimalPlace=	CorrectedValue(Average,n);
+	System.out.println("Rounded off Average is = "+correctedDecimalPlace);
+	}
 
 	}
 
@@ -50,15 +62,47 @@ public class AverageCalculation {
 	}
 
 	private static Float averageCal(List<Float> subjects) {
-		Float TotalMarks=0.0f,Average=0.0f;
+		Float TotalMarks=0.0f,Avg=0.0f;
 		
 		for(Float f:subjects)
 		{
 			TotalMarks=f+TotalMarks;
 		}
-		Average=TotalMarks/subjects.size();
+		Avg=TotalMarks/subjects.size();
 
-		return Average;
+		return Avg;
 	}
+	
 
+	private static int RoundedOffValue(Float average) {
+		int RoundedValue=0;
+		String[] AverageSplit=Float.toString(average).split("\\.");
+		if(AverageSplit.length!=1)
+		{
+			Integer FirstDecimalPlace=Integer.parseInt((AverageSplit[1].substring(0,1)));
+			if(FirstDecimalPlace>=5)
+				RoundedValue=Integer.parseInt(AverageSplit[0])+1;
+			else
+				RoundedValue=Integer.parseInt(AverageSplit[0]);
+		}
+		else
+			RoundedValue=Integer.parseInt(AverageSplit[0]);
+		return RoundedValue;
+
+	}
+	
+
+	private static Float CorrectedValue(Float average, int n) {
+		Float CorrectedVal;
+		String[] AverageSplit=Float.toString(average).split("\\.");
+		
+		if(AverageSplit[1].length()>n)
+		{
+		CorrectedVal=Float.parseFloat(AverageSplit[0].concat(".").concat(AverageSplit[1].substring(0,n)));		
+		}
+		else
+		CorrectedVal=Float.parseFloat(AverageSplit[0].concat(".").concat(AverageSplit[1]));
+		
+		return CorrectedVal;
+	}
 }
