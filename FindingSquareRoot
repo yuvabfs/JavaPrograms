@@ -1,0 +1,30 @@
+package org.basics.fourproblems;
+
+import java.util.Scanner;
+
+public class FindingSquareRoot {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		float input=sc.nextInt();
+		float temp=input;
+		float Sqrt=0;
+		int i=1; 
+    	for(i=1;temp>0;i=i+2)
+		{
+			temp=temp-i;
+
+			Sqrt++;
+		}
+		System.out.println(((int)Sqrt));
+		
+	/*	for( j=(Sqrt-2);j<Sqrt;j=j+0.01f)
+		{
+			System.out.println(j);
+			if((j*j)==(input-0.001))break;
+		}
+		System.out.println(j);*/
+
+	}
+
+}
