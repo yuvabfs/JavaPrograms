@@ -1,0 +1,91 @@
+package org.basics.fourproblems;
+
+import java.util.Scanner;
+
+public class MyCalculator {
+	static float result=0.0f;
+	
+	public static float calculate(float num,String sign)
+	{
+		
+		switch (sign) {
+		case "+": add(num,result); break;
+		case "-": subtract(num,result);	break;
+		case "*": multiply(num,result);	break;
+		case "/": divide(num,result); break;
+		case "^": power(num,result); break;
+		case "%": percent(num,result); break;
+		case "mod":	mod(num,result); break;
+		default: System.out.println("Input not supported!");	
+		}	
+	return result;		
+	}
+	
+
+	public static float add(float addend, float res)
+	{
+		result=result+addend;
+		return result;
+	}
+	
+	public static float subtract(float minus, float res)
+	{
+		result=result-minus;
+		return result;
+	}
+	
+	public static float multiply(float mul, float res)
+	{
+		result=result*mul;
+		return result;
+	}
+	
+	public static float divide(float dividor, float res)
+	{
+		result=result/dividor;
+		return result;
+	}
+	
+	public static float percent(float numb, float res)
+	{
+		result=(result/100)*numb;
+		return result;
+	}
+	
+	public static float power(float pow, float res)
+	{
+		for(int i=1;i<pow;i++)
+		result=res*result;
+
+		return result;
+	}
+	
+	public static float mod(float Mod, float res)
+	{
+		result=result%Mod;
+		return result;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		float operand1=0, operand2=0, output=0; //Initialization
+		String operator;
+		
+		System.out.println("Sample input:\n1<press enter>\n+<press enter>\n2<press enter>\n+<press enter>\n3<press enter>\n=<press enter>");
+		System.out.println("Please Enter your Inputs...");
+		
+		operand1=sc.nextInt(); //Storing the First Operand as result
+		result=operand1; 	 //Fetching & Storing the First Operand as 'Result'
+		do
+		{
+			operator=sc.next(); 
+			if(operator.equals("=")) break;  //Execution ends when you enter "="
+			operand2=sc.nextInt(); 			
+			result=calculate(operand2, operator);
+			
+		}while(!(operator.equals("=")));
+		System.out.println(result);		
+			
+	}
+
+}
