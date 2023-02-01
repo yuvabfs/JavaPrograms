@@ -14,12 +14,13 @@ public class AverageCalculation {
 	int NoOfSubjects=sc.nextInt();
 	
 	
-	List<Float> Subjects=new ArrayList<>();
-	Float mark,Average, correctedDecimalPlace;
+	List<Double> Subjects=new ArrayList<>();
+	Double mark,Average, correctedDecimalPlace;
 	int roundedOff=0;
 	
 	while(Subjects.size()<NoOfSubjects) {
-		mark=sc.nextFloat();
+		System.out.println("Enter the Subject"+(Subjects.size()+1)+" Mark :");
+		mark=sc.nextDouble();
 		if(isValid(mark,n))
 			Subjects.add(mark);
 		else
@@ -43,16 +44,18 @@ public class AverageCalculation {
 	correctedDecimalPlace=	CorrectedValue(Average,n);
 	System.out.println("Rounded off Average is = "+correctedDecimalPlace);
 	}
+	else
+		System.out.println("Invalid option to RoundOff[Yes/No]");
 
 	}
 
 
-	private static boolean isValid(Float mark, int n) {
+	private static boolean isValid(Double mark, int n) {
 		boolean isValid=true;
 	
-		String[] DecimalSplit=Float.toString(mark).split("\\.");
+		String[] DecimalSplit=Double.toString(mark).split("\\.");
 
-		if(DecimalSplit.length!=1&&DecimalSplit[1].length()>n)
+		if((DecimalSplit.length!=1)&&(DecimalSplit[1].length()>n))
 		{
 			System.out.println("Please Re-enter the mark correctly");
 			isValid=false;
@@ -61,10 +64,10 @@ public class AverageCalculation {
 		return isValid;
 	}
 
-	private static Float averageCal(List<Float> subjects) {
-		Float TotalMarks=0.0f,Avg=0.0f;
+	private static Double averageCal(List<Double> subjects) {
+		Double TotalMarks=0.0d,Avg=0.0d;
 		
-		for(Float f:subjects)
+		for(Double f:subjects)
 		{
 			TotalMarks=f+TotalMarks;
 		}
@@ -74,9 +77,9 @@ public class AverageCalculation {
 	}
 	
 
-	private static int RoundedOffValue(Float average) {
+	private static int RoundedOffValue(Double average) {
 		int RoundedValue=0;
-		String[] AverageSplit=Float.toString(average).split("\\.");
+		String[] AverageSplit=Double.toString(average).split("\\.");
 		if(AverageSplit.length!=1)
 		{
 			Integer FirstDecimalPlace=Integer.parseInt((AverageSplit[1].substring(0,1)));
@@ -92,16 +95,16 @@ public class AverageCalculation {
 	}
 	
 
-	private static Float CorrectedValue(Float average, int n) {
-		Float CorrectedVal;
-		String[] AverageSplit=Float.toString(average).split("\\.");
+	private static Double CorrectedValue(Double average, int n) {
+		Double CorrectedVal;
+		String[] AverageSplit=Double.toString(average).split("\\.");
 		
 		if(AverageSplit[1].length()>n)
 		{
-		CorrectedVal=Float.parseFloat(AverageSplit[0].concat(".").concat(AverageSplit[1].substring(0,n)));		
+		CorrectedVal=Double.parseDouble(AverageSplit[0].concat(".").concat(AverageSplit[1].substring(0,n)));		
 		}
 		else
-		CorrectedVal=Float.parseFloat(AverageSplit[0].concat(".").concat(AverageSplit[1]));
+		CorrectedVal=Double.parseDouble(AverageSplit[0].concat(".").concat(AverageSplit[1]));
 		
 		return CorrectedVal;
 	}
