@@ -1,0 +1,26 @@
+package org.array.sixproblems;
+
+import java.util.Scanner;
+
+public class StarPatternZ {
+	public static void main(String[] args)
+	{
+	Scanner scan=new Scanner (System.in);
+	System.out.println("Enter the NxN matrix length n: ");
+	int N=scan.nextInt();
+	starPattern(N);
+}
+	private static void starPattern(int N) {
+		char[][] starPattern=new char[N][N];
+		for (int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				if((i==0) || (i==N-1) ||((i+j)==N-1))starPattern[i][j]='*';
+				else starPattern[i][j]=' ';
+				System.out.print(starPattern[i][j]);
+			}
+			System.out.println("");
+		}
+	}
+}
