@@ -1,0 +1,37 @@
+package org.basics.fourproblems;
+
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class SandGlass2Darray {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Enter [6x6] Array elements Row by Row");
+		Integer[][] rowElements=new Integer[6][6];
+		Set<Integer> sandGlassSum=new TreeSet<Integer>();
+
+		//Fetching input from user
+		for(int i=0; i<6;i++)
+		{
+			for(int j=0; j<6;j++)
+			{
+				rowElements[i][j] = scan.nextInt();
+			}
+		}
+		
+		//Sum of the Sand-glass and Storing in Tree Set	
+		for(int i=0; i<4;i++)
+		{
+			for(int j=0; j<4;j++)
+			{
+				sandGlassSum.add(rowElements[i][j]+rowElements[i][j+1]+rowElements[i][j+2]+rowElements[i+1][j+1]+rowElements[i+2][j]+rowElements[i+2][j+1]+rowElements[i+2][j+2]);
+			}
+		}
+		
+		System.out.println("Largest Sand Glass Sum is:"+ ((TreeSet<Integer>) sandGlassSum).last());
+		scan.close();
+	}
+
+}
