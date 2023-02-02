@@ -17,13 +17,7 @@ public class FindingSquareRoot {
 			Sqrt++;
 		}
 		System.out.println(((int)Sqrt));
-		
-	/*	for( j=(Sqrt-2);j<Sqrt;j=j+0.01f)
-		{
-			System.out.println(j);
-			if((j*j)==(input-0.001))break;
-		}
-		System.out.println(j);*/
+
 
 	}
 
