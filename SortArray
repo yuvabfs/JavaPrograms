@@ -1,0 +1,47 @@
+package org.array.sixproblems;
+
+import java.util.Scanner;
+
+public class SortArray {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Enter number of array elements: ");
+		int noOfElements = scan.nextInt();
+
+		int[] arrayInput = new int[noOfElements];
+		for (int i = 0; i < noOfElements; i++) {
+			arrayInput[i] = scan.nextInt();
+		}
+
+		sortedArray(arrayInput);
+		scan.close();
+	}
+
+	private static void sortedArray(int[] arrayInput) {
+			int temp;
+			int length=arrayInput.length;
+			for(int i=0;i<length;i++)
+			{
+				for(int j=i+1;j<length;j++)
+				{
+					if(arrayInput[i]>arrayInput[j])
+						
+					{
+				temp=arrayInput[i];
+				arrayInput[i]=arrayInput[j];
+				arrayInput[j]=temp;
+					}
+				}
+			}
+			for(int i=0;i<length;i++)
+			{
+				System.out.print(arrayInput[i]+"  ");
+			}
+			
+
+		
+	}
+
+}
