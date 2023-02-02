@@ -1,0 +1,38 @@
+package org.array.sixproblems;
+
+import java.util.Scanner;
+
+public class LeadersInArray {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		
+		System.out.println("Enter number of array elements: ");		
+		int noOfElements=scan.nextInt();
+
+		int[] arrayInput=new int[noOfElements];
+		for(int i=0;i<noOfElements;i++)
+		{
+			arrayInput[i]=scan.nextInt();
+		}
+		
+		System.out.println("The Leaders are: " );
+		leadersOfArray(arrayInput);
+	}
+
+	private static void leadersOfArray(int[] arrayInput) {
+		int flag=0;
+		for(int i=0;i<arrayInput.length;i++)
+		{
+			flag=0;
+			for(int j=i+1;j<arrayInput.length;j++)
+			{
+				if(arrayInput[i]< arrayInput[j])
+					flag=1;
+
+			}
+			if(flag!=1) System.out.print(arrayInput[i]+" ");
+		}
+		
+	}
+}
